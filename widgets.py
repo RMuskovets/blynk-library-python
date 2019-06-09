@@ -97,3 +97,57 @@ class WidgetImage():
     #     i - The start index
     def setIndexingStart(i):
         self.__blynk.virtual_write(self.__vPin, i)
+
+class WidgetTable():
+    
+    # Constructor of the Table widget
+    # Parameters:
+    #     blynk - The Blynk object
+    #     vPin - The virtual pin the table is assigned to
+    def __init__(self, blynk, vPin):
+        self.__blynk = blynk
+        self.__vPin = vPin
+    
+    # addRow(id, name, val)
+    # Adds a row to the table
+    # Parameters:
+    #     id - The row's ID
+    #     name - The row's name
+    #     val - The row's value
+    def addRow(self, id, name, val):
+        self.__blynk.virtual_write(self.__vPin, "add", id, name, val)
+    
+    # updRow(id, name, val)
+    # Updates the row with given ID
+    # Parameters:
+    #     id - The row's ID
+    #     name - The row's name
+    #     val - The row's value
+    def updRow(self, id, name, val):
+        self.__blynk.virtual_write(self.__vPin, "update", id, name, val)
+    
+    # pickRow(id)
+    # Picks the row
+    # Parameters:
+    #     id - The row's ID
+    def pickRow(self, id):
+        self.__blynk.virtual_write(self.__vPin, "pick", id)
+    
+    # clear()
+    # Clears the table
+    def clear(self):
+        self.__blynk.virtual_write(self.__vPin, "clr")
+    
+    # selectRow(id)
+    # Selects the row
+    # Parameters:
+    #     id - The row's ID
+    def selectRow(self, id):
+        self.__blynk.virtual_write(self.__vPin, "select", id)
+    
+    # deselectRow(id)
+    # Deselects the row
+    # Parameters:
+    #     id - The row's ID
+    def deselectRow(self, id):
+        self.__blynk.virtual_write(self.__vPin, "deselect", id)
