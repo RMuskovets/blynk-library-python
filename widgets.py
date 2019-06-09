@@ -45,3 +45,55 @@ class WidgetLCD():
     #     s - messages to print to the LCD
     def write(self, x, y, s):
         self.__blynk.virtual_write(self.__vPin, '\0'.join(map(str, ('p', x, y, s))))
+
+class WidgetImage():
+    # Constructor for the Blynk Image Widget
+    # Parameters:
+    #     blynk - Blynk object
+    #     vPin - the virtual pin the image is connected to
+    def __init__(self, blynk, vPin):
+        self.__blynk = blynk
+        self.__vPin = vPin
+    
+    # setImages(imgs)
+    # Sets the images of the widget
+    # Parameters:
+    #     imgs - List of images' urls
+    def setImages(self, imgs):
+        self.__blynk.set_property(self.__vPin, "urls", *imgs)
+    
+    # setImage(img, index)
+    # Sets the image with given index
+    # Parameters:
+    #     img - The URL of image replacing with
+    #     index - The image's index
+    def setImage(self, img, index):
+        self.__blynk.set_property(self.__vPin, "url", index, img)
+    
+    # setOpacity(percent)
+    # Sets the opacity of all image gallery
+    # Parameters:
+    #     percent - The % of opacity
+    def setOpacity(self, percent):
+        self.__blynk.set_property(self.__vPin, "opacity", percent)
+    
+    # setScale(percent):
+    # Sets the scale of image gallery
+    # Parameters:
+    #     percent - The % of scale
+    def setScale(self, percent):
+        self.__blynk.set_property(self.__vPin, "scale", percent)
+    
+    # setRotation(deg)
+    # Sets the rotation of gallery (in degrees)
+    # Parameters:
+    #     deg - The degrees to rotate
+    def setRotation(deg):
+        self.__blynk.set_property(self.__vPin, "rotation", deg)
+    
+    # setIndexingStart(i)
+    # Sets the start number of indexes (see setImage)
+    # Parameters:
+    #     i - The start index
+    def setIndexingStart(i):
+        self.__blynk.virtual_write(self.__vPin, i)
